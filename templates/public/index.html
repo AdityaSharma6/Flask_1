@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+        <title> Website </title>
+    </head>
+
+    <body>
+        <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+        
+        <h1> Home Page </h1>
+        <form action="http://localhost:5000/upload_file" method="POST" enctype="multipart/form-data">
+            <input type = "file" name = "upload_file" />
+            <input type = "submit" name = "submit_file" />
+        </form>
+    </body>
+</html>
