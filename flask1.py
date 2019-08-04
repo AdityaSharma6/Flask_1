@@ -1,20 +1,78 @@
+'''
+Author: Aditya Sharma
+Date: August 1st, 2019
+'''
+
+############################################################################################################################################
 from flask import Flask, render_template, request, redirect, flash
 from werkzeug.utils import secure_filename
+import pandas as pd
 import os
-
 app = Flask(__name__)
-UPLOAD_FOLDER = 'D:/uploads'
-app.secret_key = "secret key"
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.config["ALLOWED_EXTENSIONS"] = ["txt", "docx", "pdf"]
 app.config['MAX_LENGTH'] = 1024
-app.config["ALLOWED_EXTENSIONS"] = ["txt", "docx"]
+############################################################################################################################################
+
+def ensure_file(uploaded_file):
+    if (uploaded_file == ""):
+        return False
+    else:
+        return True
+
+def ensure_file_extension(uploaded_file):
+    if ("." not in uploaded_file):
+        return False
+    else:
+        extension = uploaded_file.rsplit(".", 1)[1]
+        if (extension not in app.config["ALLOWED_EXTENSIONS"]):
+            return False
+        else:
+            return True
 
 
-@app.route("/") # Things that are typed into the browser to take you to different pages.
+
+############################################################################################################################################
+
+@app.route("/home") # When the URL ends with <--, the specified template will be rendered.
 def home():
     #return ("Hello World!")
     return render_template("public/index.html") 
 
+@app.route("/upload-file", methods = ["GET", "POST"])
+def upload_file():
+
+    if (request.method == "POST"):
+        if (request.files):
+            user_file = request.files["user_file"]
+
+            if (not ensure_file(user_file.filename)):
+                return render_template("public/File_No_Name.html")
+
+            if (not ensure_file_extension(user_file.filename)):
+                return render_template("public/Incorrect_Extension.html")
+
+    return render_template("public/upload_file.html")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+'''
 def allowed_file(filename):
     extension = filename.rsplit(".", 1)[1]
     if not "." in filename:
@@ -24,8 +82,8 @@ def allowed_file(filename):
             return True
         else:
             return False
-
-
+'''
+'''
 @app.route("/analysis", methods=["GET", "POST"])
 def upload_file():
     if request.method == "POST":
@@ -42,6 +100,6 @@ def upload_file():
             return redirect(request.url)
 
     #return render_template("public/analysis.html")
-
+'''
 if __name__ == '__main__':
    app.run(debug = True)
