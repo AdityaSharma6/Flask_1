@@ -7,8 +7,8 @@ app = Flask(__name__)
 
 @app.route("/") # Things that are typed into the browser to take you to different pages.
 def home():
-    return render_template("public/index.html") # Type in the HTML
-
+    #return ("Hello World!")
+    return render_template("public/index.html") 
 
 if __name__ == '__main__':
    app.run(debug = True)
