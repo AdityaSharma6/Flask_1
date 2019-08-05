@@ -1,4 +1,3 @@
-
 class Text_Text_Extraction():
     def __init__(self, file_name):
         self.file_name = file_name
@@ -6,7 +5,7 @@ class Text_Text_Extraction():
     def text_extraction(self):
         with open(self.file_name) as data:
             contents = data.readlines()
-            print(contents)
+            #print(contents)
 
             counter = 0
             while counter in range(len(contents)):
@@ -18,11 +17,8 @@ class Text_Text_Extraction():
                 
             
         text = " ".join(contents)
-        print(text)
+        #print(text)
         return text
 
     def execute(self):
         self.text_extraction()
-
-parser = Text_Text_Extraction("file.txt")
-parser.execute()
