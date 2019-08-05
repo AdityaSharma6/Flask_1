@@ -30,9 +30,6 @@ class PDF_Text_Extraction():
         self.text_extraction()
         self.assign_text()
 
-variable = PDF_Text_Extraction("file1.pdf")
-variable.execute()
-
 '''
 import PyPDF2
 
