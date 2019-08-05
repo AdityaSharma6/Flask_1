@@ -13,10 +13,8 @@ class Word_Text_Extraction():
             all_text.append(paragraph_text)
         
         word_document = " ".join(all_text)
-        print(word_document)
+        return word_document
+        #print(word_document)
     
     def execute(self):
         self.text_extraction()
-
-parse = Word_Text_Extraction("McMaster_WebDeveloper_Task.docx")
-parse.execute()
